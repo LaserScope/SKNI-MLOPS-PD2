@@ -1,34 +1,38 @@
+
 from bs4 import BeautifulSoup
 import requests
-import time
-import datetime
+# -*- coding: utf-8 -*-
+from bs4 import BeautifulSoup
+import requests
+import re
 
-link = 'https://www.flipkart.com/bose-new-smart-soundbar-900-dolby-atmos-alexa-built-in-bluetooth-connectivity-google-assistant-speaker/p/itm6d81fcf6751c1?pid=ACCGCXGGKC5GZYXR&lid=LSTACCGCXGGKC5GZYXRBB2PHK&marketplace=FLIPKART&q=alexa&store=search.flipkart.com&srno=s_1_6&otracker=search&otracker1=search&fm=Search&iid=f781d89c-1854-4ca7-a989-3a8e8f5f3f84.ACCGCXGGKC5GZYXR.SEARCH&ppt=sp&ppn=sp&ssid=odrrs1wii80000001673647881169&qH=277f2a7ecb7cfcd2'
-page = requests.get(link)
-page.content
+headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9'}
+url = 'https://www.flipkart.com/bose-new-smart-soundbar-900-dolby-atmos-alexa-built-in-bluetooth-connectivity-google-assistant-speaker/p/itm6d81fcf6751c1?pid=ACCGCXGGKC5GZYXR&lid=LSTACCGCXGGKC5GZYXRBB2PHK&marketplace=FLIPKART&q=alexa&store=search.flipkart.com&srno=s_1_6&otracker=search&otracker1=search&fm=Search&iid=f781d89c-1854-4ca7-a989-3a8e8f5f3f84.ACCGCXGGKC5GZYXR.SEARCH&ppt=sp&ppn=sp&ssid=odrrs1wii80000001673647881169&qH=277f2a7ecb7cfcd2'
 
-soup = BeautifulSoup(page.content, 'html.parser')
-print(soup.prettify())
+response=requests.get(url,headers=headers)
+soup=BeautifulSoup(response.content,'lxml')
 
-name=soup.find('span',class_="B_NuCI")
-print(name)
-name.text
+for item in soup.select('[data-id]'):
+	try:
+		print('----------------------------------------')
 
-price=soup.find('div',class_="_30jeq3 _16Jk6d")
-print(price)
-price.text
 
-rating=soup.find('span',class_="_2dMYsv")
-print(rating)
-rating.text
+		#print(item)
+		print(item.select('a img')[0]['alt'])
+		print(item.select('a')[0]['href'])
 
-offers=soup.find('div',class_="_1AtVbE col-12-12")
-print(offers)
-offers.text
+		print(item.select('[id*=productRating]')[0].get_text().strip())
+		prices = item.find_all(text=re.compile('₹')) 
+		print(prices[0])
 
-specification=soup.find('div',class_="fMghEO")
-print(specification)
-specification.text
+		discounts = item.find_all(text=re.compile('off')) 
+		print(discounts[0])
+
+
+
+	except Exception as e:
+		#raise e
+		b=0
 
 import datetime
 download_date = datetime.date.today()

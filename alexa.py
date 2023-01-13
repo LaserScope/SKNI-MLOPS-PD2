@@ -11,10 +11,49 @@ headers = ({'User-Agent':
 page = requests.get(URL, headers=headers)
 soup = BeautifulSoup(page.content, "lxml")
 
-title = soup.find("span", attrs={"id":'productTitle'})
-title_value = title.string
-title_string = title_value.strip()
-print(title_string)
+def get_title(soup):
+	
+	try:
+		title = soup.find("span", attrs={"id":'productTitle'})
+		title_value = title.string
+		title_string = title_value.strip()
+            except AttributeError:
+		title_string = ""	
+
+	return title_string
+
+def get_price(soup):
+
+	try:
+		price = soup.find("span", attrs={'id':'priceblock_ourprice'}).string.strip()
+
+	except AttributeError:
+		price = ""	
+
+	return price
+
+def get_rating(soup):
+
+	try:
+		rating = soup.find("i", attrs={'class':'a-icon a-icon-star a-star-4-5'}).string.strip()
+		
+	except AttributeError:
+		
+		try:
+			rating = soup.find("span", attrs={'class':'a-icon-alt'}).string.strip()
+		except:
+			rating = ""	
+
+	return rating
+
+def get_review_count(soup):
+	try:
+		review_count = soup.find("span", attrs={'id':'acrCustomerReviewText'}).string.strip()
+		
+	except AttributeError:
+		review_count = ""	
+
+	return review_count
 
 price = soup.find("span", attrs={"class":'a-offscreen'})
 price_value = price.string

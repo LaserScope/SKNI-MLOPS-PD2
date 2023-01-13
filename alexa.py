@@ -55,17 +55,6 @@ def get_review_count(soup):
 
 	return review_count
 
-price = soup.find("span", attrs={"class":'a-offscreen'})
-price_value = price.string
-print(price_value)
-
-rating = soup.find("span", attrs={"class":'a-icon-alt'})
-rating_value = rating.string
-print(rating_value)
-
-brand = soup.find("span", attrs={"id":'bylineInfo'})
-brand_value = brand.string
-print(brand_value)
 
 import datetime
 download_date = datetime.date.today()

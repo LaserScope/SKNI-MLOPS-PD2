@@ -1,8 +1,7 @@
 name: alexa main.py
 
 on:
-  schedule:
-    - cron: '*/15 * * * *'
+  [push]
    
 
 jobs:

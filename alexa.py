@@ -6,7 +6,7 @@ import datetime
 def get_title(soup):
 	
 	try:
-		title = soup.find("span", attrs={"id":'productTitle'})
+		title = soup.find("span", attrs={'id':'productTitle'})
 		title_value = title.string
 		title_string = title_value.strip()
 	
@@ -64,7 +64,8 @@ if __name__ == '__main__':
 	print("Product Rating =", get_rating(soup))
 	print("Number of Product Reviews =", get_review_count(soup))
 	print()
-	print()		
+	print()	
+	
 import datetime
 download_date = datetime.date.today()
 print(download_date)

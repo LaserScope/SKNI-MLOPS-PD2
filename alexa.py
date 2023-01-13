@@ -64,9 +64,7 @@ if __name__ == '__main__':
 	print("Product Rating =", get_rating(soup))
 	print("Number of Product Reviews =", get_review_count(soup))
 	print()
-	print()
-
-		
+	print()		
 import datetime
 download_date = datetime.date.today()
 print(download_date)

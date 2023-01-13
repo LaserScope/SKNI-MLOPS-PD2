@@ -67,7 +67,7 @@ print(download_date)
 import csv
 
 header = ['Produkt', 'Cena', 'Rating', 'Marka', 'Date']
-data = [title_string, price, rating, review_count, download_date]
+data = ["title_string", "price", "rating", "review_count", "download_date"]
 
 with open('AmazonAlexa.csv', 'w', newline='', encoding='UTF8') as f:
     writer = csv.writer(f)

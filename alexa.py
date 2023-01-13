@@ -6,7 +6,7 @@ import datetime
 def get_title(soup):
 	
 	try:
-		title = soup.find("span", attrs={'id':'productTitle'})
+		title = soup.find("span", attrs={"id":'productTitle'})
 		title_value = title.string
 		title_string = title_value.strip()
 	
@@ -18,7 +18,7 @@ def get_title(soup):
 def get_price(soup):
 
 	try:
-		price = soup.find("span", attrs={'class':'a-offscreen'}).string.strip()
+		price = soup.find("span", attrs={'id':'priceblock_ourprice'}).string.strip()
 		
 	except AttributeError:
 		price = ""

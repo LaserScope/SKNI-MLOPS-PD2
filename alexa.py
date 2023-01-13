@@ -18,7 +18,8 @@ def get_title(soup):
 		title_value = title.string
 		title_string = title_value.strip()
 	except AttributeError:
-		title_string = ""	
+		title_string = ""
+	print(title_string)
 
 	return title_string
 
@@ -28,7 +29,8 @@ def get_price(soup):
 		price = soup.find("span", attrs={'id':'priceblock_ourprice'}).string.strip()
 
 	except AttributeError:
-		price = ""	
+		price = ""
+	print(price)
 
 	return price
 
@@ -42,7 +44,8 @@ def get_rating(soup):
 		try:
 			rating = soup.find("span", attrs={'class':'a-icon-alt'}).string.strip()
 		except:
-			rating = ""	
+			rating = ""
+		print(rating)
 
 	return rating
 
@@ -51,7 +54,8 @@ def get_review_count(soup):
 		review_count = soup.find("span", attrs={'id':'acrCustomerReviewText'}).string.strip()
 		
 	except AttributeError:
-		review_count = ""	
+		review_count = ""
+	print(review_count)
 
 	return review_count
 
@@ -63,7 +67,7 @@ print(download_date)
 import csv
 
 header = ['Produkt', 'Cena', 'Rating', 'Marka', 'Date']
-data = [title, price, rating, review_count, download_date]
+data = [title_string, price, rating, review_count, download_date]
 
 with open('AmazonAlexa.csv', 'w', newline='', encoding='UTF8') as f:
     writer = csv.writer(f)

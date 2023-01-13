@@ -24,7 +24,7 @@ jobs:
       - name: execute py script
         env:
           SOME_SECRET: ${{ secrets.SOME_SECRET }}
-        run: python alex.py
+        run: python alexa.py
           
       - name: commit files
         run: |

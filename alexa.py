@@ -1,69 +1,36 @@
+import bs4
 from bs4 import BeautifulSoup
 import requests
 import time
 import datetime
 
-def get_title(soup):
-	
-	try:
-		title = soup.find("span", attrs={"id":'productTitle'})
-		title_value = title.string
-		title_string = title_value.strip()
-	
-	except AttributeError:
-		title_string = ""
-		
-	return title_string
+link = 'https://www.flipkart.com/bose-new-smart-soundbar-900-dolby-atmos-alexa-built-in-bluetooth-connectivity-google-assistant-speaker/p/itm6d81fcf6751c1?pid=ACCGCXGGKC5GZYXR&lid=LSTACCGCXGGKC5GZYXRBB2PHK&marketplace=FLIPKART&q=alexa&store=search.flipkart.com&srno=s_1_6&otracker=search&otracker1=search&fm=Search&iid=f781d89c-1854-4ca7-a989-3a8e8f5f3f84.ACCGCXGGKC5GZYXR.SEARCH&ppt=sp&ppn=sp&ssid=odrrs1wii80000001673647881169&qH=277f2a7ecb7cfcd2'
+page = requests.get(link)
+page.content
 
-def get_price(soup):
+soup = bs(page.content, 'html.parser')
+print(soup.prettify())
 
-	try:
-		price = soup.find("span", attrs={'id':'priceblock_ourprice'}).string.strip()
-		
-	except AttributeError:
-		price = ""
+name=soup.find('span',class_="B_NuCI")
+print(name)
+name.text
 
-	return price
+price=soup.find('div',class_="_30jeq3 _16Jk6d")
+print(price)
+price.text
 
-def get_rating(soup):
+rating=soup.find('span',class_="_2dMYsv")
+print(rating)
+rating.text
 
-	try:
-		rating = soup.find("i", attrs={'class':'a-icon a-icon-star a-star-4-5'}).string.strip()
-		
-		
-	except AttributeError:
-		
-		try:
-			rating = soup.find("span", attrs={'class':'a-icon-alt'}).string.strip()
-		except:
-			rating = ""
-		print(rating)
+offers=soup.find('div',class_="_1AtVbE col-12-12")
+print(offers)
+offers.text
 
-	return rating
+specification=soup.find('div',class_="fMghEO")
+print(specification)
+specification.text
 
-def get_review_count(soup):
-	try:
-		review_count = soup.find("span", attrs={'id':'acrCustomerReviewText'}).string.strip()
-	
-	except AttributeError:
-		review_count = ""
-
-	return review_count
-
-if __name__ == '__main__':
-	HEADERS = ({'User-Agent':
-            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
-            'Accept-Language': 'en-US, en;q=0.5'})
-	URL = 'https://www.amazon.pl/fire-tv-stick-wersja-miedzynarodowa-z-pilotem-alexa-voice-remote-urz%C4%85dzenie-do-przesylania-strumieniowego-hd/dp/B098J3NXBZ/ref=lp_20772983031_1_4'
-	
-	page = requests.get(URL, headers=HEADERS)
-	soup = BeautifulSoup(page.content, "lxml")
-	
-	print("Product Title =", get_title(soup))
-	print("Product Price =", get_price(soup))
-	print("Product Rating =", get_rating(soup))
-	print("Number of Product Reviews =", get_review_count(soup))
-	
 import datetime
 download_date = datetime.date.today()
 print(download_date)

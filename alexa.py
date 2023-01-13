@@ -8,7 +8,7 @@ link = 'https://www.flipkart.com/bose-new-smart-soundbar-900-dolby-atmos-alexa-b
 page = requests.get(link)
 page.content
 
-soup = bs(page.content, 'html.parser')
+soup = bs4(page.content, 'html.parser')
 print(soup.prettify())
 
 name=soup.find('span',class_="B_NuCI")

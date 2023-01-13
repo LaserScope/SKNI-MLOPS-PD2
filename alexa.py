@@ -24,6 +24,9 @@ rating = soup.find("span", attrs={"class":'a-icon-alt'})
 rating_value = rating.string
 print(rating_value)
 
+brand = soup.find("span", attrs={"id":'bylineInfo'})
+brand_value = brand.string
+print(brand_value)
 
 import datetime
 download_date = datetime.date.today()
@@ -32,7 +35,7 @@ print(download_date)
 import csv
 
 header = ['Produkt', 'Cena', 'Rating', 'Marka', 'Date']
-data = [title, price, rating, brand.text, download_date]
+data = [title_string, price_value, rating_value, brand_value, download_date]
 
 with open('AmazonAlexa.csv', 'w', newline='', encoding='UTF8') as f:
     writer = csv.writer(f)

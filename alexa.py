@@ -10,16 +10,10 @@ page = requests.get(URL, headers=headers)
 soup = BeautifulSoup(page.content, "lxml")
 
 
-title = soup.select_one("span[id='productTitle']").text
-price = soup.select_one("span[class='a-offscreen']").text
-rating = soup.select_one("span[class='a-icon-alt']").text
+
 brand = soup.find(id='bylineInfo')
 
-title = title.strip() [:52]
 
-print(title)
-print(price)
-print(rating)
 print(brand.text)
 
 import datetime

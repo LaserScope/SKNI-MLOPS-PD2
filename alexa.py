@@ -54,7 +54,7 @@ if __name__ == '__main__':
 	HEADERS = ({'User-Agent':
             'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
             'Accept-Language': 'en-US, en;q=0.5'})
-	URL = 'https://www.amazon.pl/dp/B09B9CX8PW/ref=gw_pl_desk_other_qc_aucc_can?pf_rd_r=TCSE5XFXCXBV39WDB7DT&pf_rd_p=bfa2cf71-8228-4068-9dc8-bcd6d73dbe76&pd_rd_r=7e57b02b-a1e7-4a42-9774-93b2d5d996be&pd_rd_w=bIEEc&pd_rd_wg=LO3j0&ref_=pd_gw_unk'
+	URL = 'https://www.amazon.pl/fire-tv-stick-wersja-miedzynarodowa-z-pilotem-alexa-voice-remote-urz%C4%85dzenie-do-przesylania-strumieniowego-hd/dp/B098J3NXBZ/ref=lp_20772983031_1_4'
 	
 	page = requests.get(URL, headers=HEADERS)
 	soup = BeautifulSoup(page.content, "lxml")

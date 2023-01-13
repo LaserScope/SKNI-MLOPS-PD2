@@ -17,7 +17,7 @@ def get_title(soup):
 		title = soup.find("span", attrs={"id":'productTitle'})
 		title_value = title.string
 		title_string = title_value.strip()
-        except AttributeError:
+	except AttributeError:
 		title_string = ""	
 
 	return title_string

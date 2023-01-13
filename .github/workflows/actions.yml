@@ -1,7 +1,7 @@
 name: alexa main.py
 
 on:
-  push
+   push
 
 jobs:
   build:

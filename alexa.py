@@ -3,14 +3,6 @@ import requests
 import time
 import datetime
 
-URL = 'https://www.amazon.pl/zupelnie-nowe-echo-dot-4-generacji-wersja-miedzynarodowa/dp/B085K45C3S/ref=lp_22832478031_1_3'
-headers = ({'User-Agent':
-            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
-            'Accept-Language': 'en-US, en;q=0.5'})
-
-page = requests.get(URL, headers=headers)
-soup = BeautifulSoup(page.content, "lxml")
-
 def get_title(soup):
 	
 	try:
@@ -58,10 +50,22 @@ def get_review_count(soup):
 
 	return review_count
 
-print(get_title(soup))
-print(get_price(soup))
-print(get_rating(soup))
-print(get_review_count(soup))
+if __name__ == '__main__':
+	HEADERS = ({'User-Agent':
+            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',
+            'Accept-Language': 'en-US, en;q=0.5'})
+	URL = 'https://www.amazon.pl/zupelnie-nowe-echo-dot-4-generacji-wersja-miedzynarodowa/dp/B085K45C3S/ref=lp_22832478031_1_3'
+	
+	page = requests.get(URL, headers=HEADERS)
+	soup = BeautifulSoup(page.content, "lxml")
+	
+	print("Product Title =", get_title(soup))
+	print("Product Price =", get_price(soup))
+	print("Product Rating =", get_rating(soup))
+	print("Number of Product Reviews =", get_review_count(soup))
+	print()
+	print()
+
 		
 import datetime
 download_date = datetime.date.today()

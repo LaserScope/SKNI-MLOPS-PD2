@@ -14,8 +14,16 @@ soup = BeautifulSoup(page.content, "lxml")
 title = soup.find("span", attrs={"id":'productTitle'})
 title_value = title.string
 title_string = title_value.strip()
-
 print(title_string)
+
+price = soup.find("span", attrs={"class":'a-offscreen'})
+price_value = price.string
+print(price_value)
+
+rating = soup.find("span", attrs={"class":'a-icon-alt'})
+rating_value = rating.string
+print(rating_value)
+
 
 import datetime
 download_date = datetime.date.today()

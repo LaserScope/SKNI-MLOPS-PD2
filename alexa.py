@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
 import time
-import datetime
 import os
 
 URL = 'https://www.amazon.pl/zupelnie-nowe-echo-dot-4-generacji-wersja-miedzynarodowa/dp/B085K45C3S/ref=lp_22832478031_1_3'

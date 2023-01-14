@@ -18,11 +18,11 @@ jobs:
           
       - name: install python packages
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+         python -m pip install --upgrade pip
+         pip install -r requirements.txt
           
       - name: execute py script
-        run: python alexa.py
+        run:  python alexa.py    
           
       - name: commit files
         run: |
@@ -30,4 +30,10 @@ jobs:
           git config --local user.name "GitHub Action"
           git add -A
           git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
+          
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main 
           

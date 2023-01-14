@@ -1,38 +1,26 @@
 
 from bs4 import BeautifulSoup
 import requests
-# -*- coding: utf-8 -*-
-from bs4 import BeautifulSoup
-import requests
-import re
+import time
+import datetime
 
-headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9'}
-url = 'https://www.flipkart.com/bose-new-smart-soundbar-900-dolby-atmos-alexa-built-in-bluetooth-connectivity-google-assistant-speaker/p/itm6d81fcf6751c1?pid=ACCGCXGGKC5GZYXR&lid=LSTACCGCXGGKC5GZYXRBB2PHK&marketplace=FLIPKART&q=alexa&store=search.flipkart.com&srno=s_1_6&otracker=search&otracker1=search&fm=Search&iid=f781d89c-1854-4ca7-a989-3a8e8f5f3f84.ACCGCXGGKC5GZYXR.SEARCH&ppt=sp&ppn=sp&ssid=odrrs1wii80000001673647881169&qH=277f2a7ecb7cfcd2'
+URL = 'https://www.amazon.pl/zupelnie-nowe-echo-dot-4-generacji-wersja-miedzynarodowa/dp/B085K45C3S/ref=lp_22832478031_1_3'
+headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36", "Accept-Encoding":"gzip, deflate", "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "DNT":"1","Connection":"close", "Upgrade-Insecure-Requests":"1"}
 
-response=requests.get(url,headers=headers)
-soup=BeautifulSoup(response.content,'lxml')
+page = requests.get(URL, headers=headers)
+soup = BeautifulSoup(page.content, "lxml")
 
-for item in soup.select('[data-id]'):
-	try:
-		print('----------------------------------------')
+title = soup.select_one("span[id='productTitle']").text
+price = soup.select_one("span[class='a-offscreen']").text
+rating = soup.select_one("span[class='a-icon-alt']").text
+brand = soup.find(id='bylineInfo')
 
+title = title.strip() [:52]
 
-		#print(item)
-		print(item.select('a img')[0]['alt'])
-		print(item.select('a')[0]['href'])
-
-		print(item.select('[id*=productRating]')[0].get_text().strip())
-		prices = item.find_all(text=re.compile('₹')) 
-		print(prices[0])
-
-		discounts = item.find_all(text=re.compile('off')) 
-		print(discounts[0])
-
-
-
-	except Exception as e:
-		#raise e
-		b=0
+print(title)
+print(price)
+print(rating)
+print(brand.text)
 
 import datetime
 download_date = datetime.date.today()

@@ -2,7 +2,7 @@ name: alexa main.py
 
 on:
   schedule:
-    - cron: '*/15 * * * *' # runs every 20 minutes
+    - cron: '*/15 * * * *'
 
 
 jobs:
